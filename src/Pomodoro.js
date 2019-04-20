@@ -44,17 +44,19 @@ class Pomodoro extends React.Component {
       });
     }
 
+    let paused;
+
     if (!this.state.hasPaused) {
       this.ticktock();
-      this.setState({
-        hasPaused: true
-      });
+      paused = true;
     } else {
       clearInterval(this.timer);
-      this.setState({
-        hasPaused: false
-      });
+      paused = false;
     }
+
+    this.setState({
+      hasPaused: paused
+    });
 
   }
 
@@ -110,9 +112,9 @@ class Pomodoro extends React.Component {
           
           <Timer minutes={this.state.remainingMinutes} seconds={this.state.remainingSeconds} />
 
-          <div id="buttonDisplay" class="d-flex flex-row m-1">
-            <button className="btn btn-dark btn-outline-light p-1 mx-1 my-2" onClick={this.toggleTimer}>{!this.state.timerHasStart && !this.state.hasPaused ? 'Start' : 'Pause'}</button>
-            <button className="btn btn-dark btn-outline-light p-1 mx-1 my-2" onClick={this.resetTimer}>Reset</button>
+          <div id="buttonDisplay" className="d-flex flex-row m-1">
+            <button className="btn btn-dark btn-outline-light p-1 mx-1 my-2 user-action" onClick={this.toggleTimer}>{!this.state.timerHasStart && !this.state.hasPaused ? 'Start' : 'Pause'}</button>
+            <button className="btn btn-dark btn-outline-light p-1 mx-1 my-2 user-action" onClick={this.resetTimer}>Reset</button>
           </div>
         </div>
       </div>
