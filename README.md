@@ -1,8 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Pomodoro Clock
+# Pomodoro Timer
 
-I build this Pomodoro Clock using Pomodoro technique (which is using this Pomodoro Clock itself, after it started to function). Though not all of the time.
+I build this Pomodoro Timer using Pomodoro technique (which is using this Pomodoro Timer itself, after it started to function). Though not all of the time.
 
 
 ## Libraries

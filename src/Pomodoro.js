@@ -3,40 +3,28 @@ import Timer from './Timer';
 import Alarm from './assets/alarm.mp3';
 
 class Pomodoro extends React.Component {
-  constructor(props) {
-    let workDuration = 25;
-    let breakDuration = 5;
-    super(props);
-    this.state = {
-        timerHasStarted: false,
-        workTimerHasStarted: false,
-        breakTimerHasStarted: false,
-        hasPaused: false,
-        workDuration: workDuration * 60,
-        breakDuration: breakDuration * 60,
-        duration: workDuration * 60,
-        remainingMinutes: workDuration,
-        remainingSeconds: 0
-    }
+  workDuration = 25;
+  breakDuration = 5;
 
-    this.baseState = this.state;
-    this.timer = null;
-
-    this.toggleTimer = this.toggleTimer.bind(this);
-    this.switchTimer = this.switchTimer.bind(this);
-    this.ticktock = this.ticktock.bind(this);
-    this.resetTimer = this.resetTimer.bind(this);
-    this.playSound = this.playSound.bind(this);
+  state = {    
+    timerHasStarted: false,
+    workTimerHasStarted: false,
+    breakTimerHasStarted: false,
+    hasPaused: false,
+    workDuration: this.workDuration * 60,
+    breakDuration: this.breakDuration * 60,
+    duration: this.workDuration * 60,
+    remainingMinutes: this.workDuration,
+    remainingSeconds: 0
   }
+
+  baseState = this.state;
 
   componentDidMount() {
     this.sound = new Audio(Alarm);
   }
 
-  componentWillUnmount() {
-  }
-
-  toggleTimer() {
+  toggleTimer = () => {
     if (!this.state.timerHasStarted) {
       this.setState({
         timerHasStarted: true,
@@ -60,7 +48,7 @@ class Pomodoro extends React.Component {
 
   }
 
-  switchTimer() {
+  switchTimer = () => {
     this.playSound();
     this.setState({
       workTimerHasStarted: !this.state.workTimerHasStarted,
@@ -76,7 +64,7 @@ class Pomodoro extends React.Component {
     this.ticktock();
   }
 
-  ticktock() {
+  ticktock = () => {
     this.timer = setInterval(() => {
       if (this.state.duration <= 0) {
         clearInterval(this.timer);
@@ -96,11 +84,11 @@ class Pomodoro extends React.Component {
     }, 1000);
   }
 
-  playSound() {
+  playSound = () => {
     this.sound.play();
   }
 
-  resetTimer() {
+  resetTimer = () => {
     clearInterval(this.timer);
     this.setState(this.baseState);
   }
@@ -121,6 +109,5 @@ class Pomodoro extends React.Component {
     );
   }
 }
-
 
 export default Pomodoro;
